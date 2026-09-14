@@ -69,6 +69,9 @@ in full before starting. Section references below point at specific parts.
   underlying primitive (`Badge`, `Dot`, `StatPanelView`, ...) doesn't yet
   have its own story, add one with an illustrative example config instead
   of the app's real enum. Confirmed and applied starting Task 6.
+  Those app-specific components aren't undocumented, though — they belong
+  in a Storybook of their own inside `dashboard-app` (out of scope for
+  this plan, which only covers this repo).
 
 ---
 
