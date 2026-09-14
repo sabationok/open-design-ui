@@ -54,6 +54,21 @@ in full before starting. Section references below point at specific parts.
 - `@open_design/ui`'s peerDependencies/devDependencies mirror
   `packages/vercel-ui/package.json` version-for-version unless a task says
   to change one.
+- **Storybook demos (Tasks 5–11) port library primitives only, never
+  dashboard-app HOCs/compositions.** Several `*Demos` functions named in
+  Tasks 6, 7, and 10 (`WebhookStatusBadgeDemos`, `RequestStatusBadgeDemos`,
+  `EventTypeBadgeDemos`, `ProviderBadgeDemos`, `AttemptStatusBadgeDemos`,
+  `TransportBadgeDemos`, `HealthDotDemos`, `DestinationCardDemos`,
+  `DeliveryTimelineDemos`, and `StatPanelDemos` if it renders through the
+  app-level `StatPanel` wrapper rather than `StatPanelView` directly)
+  exercise components that live under `dashboard-app/src/app/components/**`
+  — thin wrappers hardcoding `@webhooks-proxy/shared` domain enums
+  (`WebhookEventStatus`, `DeliveryAttemptStatus`, `DestinationMeta`, ...)
+  around a `vercel-ui` primitive. Those wrappers are dashboard-app-only and
+  never move into this repo. When a task names one, skip it and, where the
+  underlying primitive (`Badge`, `Dot`, `StatPanelView`, ...) doesn't yet
+  have its own story, add one with an illustrative example config instead
+  of the app's real enum. Confirmed and applied starting Task 6.
 
 ---
 
