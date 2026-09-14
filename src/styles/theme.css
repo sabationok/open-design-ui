@@ -1,0 +1,132 @@
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* JSON syntax highlighting (used by vercel-ui's JSONViewer) */
+  --json-key: #9f1239;
+  --json-string: #15803d;
+  --json-number: #1d4ed8;
+  --json-boolean: #c2410c;
+
+  /* Generic semantic status tokens (used by vercel-ui's StatusBadge, HealthDot, FilterChip) */
+  --vui-success: #10b981;
+  --vui-success-bg: #ecfdf5;
+  --vui-success-text: #047857;
+  --vui-success-border: #a7f3d0;
+  --vui-danger: #ef4444;
+  --vui-danger-bg: #fef2f2;
+  --vui-danger-text: #b91c1c;
+  --vui-danger-border: #fecaca;
+  --vui-warning: #f59e0b;
+  --vui-warning-bg: #fffbeb;
+  --vui-warning-text: #b45309;
+  --vui-warning-border: #fde68a;
+  --vui-neutral: #a1a1aa;
+  --vui-neutral-bg: #fafafa;
+  --vui-neutral-text: #52525b;
+  --vui-neutral-border: #e4e4e7;
+  --vui-accent: #6366f1;
+  --vui-accent-bg: #eef2ff;
+  --vui-accent-text: #4338ca;
+  --vui-accent-border: #c7d2fe;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  /* JSON syntax highlighting */
+  --json-key: #fb7185;
+  --json-string: #4ade80;
+  --json-number: #60a5fa;
+  --json-boolean: #fb923c;
+}
+
+@theme inline {
+  --color-vui-success: var(--vui-success);
+  --color-vui-success-bg: var(--vui-success-bg);
+  --color-vui-success-text: var(--vui-success-text);
+  --color-vui-success-border: var(--vui-success-border);
+  --color-vui-danger: var(--vui-danger);
+  --color-vui-danger-bg: var(--vui-danger-bg);
+  --color-vui-danger-text: var(--vui-danger-text);
+  --color-vui-danger-border: var(--vui-danger-border);
+  --color-vui-warning: var(--vui-warning);
+  --color-vui-warning-bg: var(--vui-warning-bg);
+  --color-vui-warning-text: var(--vui-warning-text);
+  --color-vui-warning-border: var(--vui-warning-border);
+  --color-vui-neutral: var(--vui-neutral);
+  --color-vui-neutral-bg: var(--vui-neutral-bg);
+  --color-vui-neutral-text: var(--vui-neutral-text);
+  --color-vui-neutral-border: var(--vui-neutral-border);
+  --color-vui-accent: var(--vui-accent);
+  --color-vui-accent-bg: var(--vui-accent-bg);
+  --color-vui-accent-text: var(--vui-accent-text);
+  --color-vui-accent-border: var(--vui-accent-border);
+}
+
+@keyframes vui-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
