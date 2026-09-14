@@ -20,7 +20,7 @@ export type BaseColumnSizing = {
   minWidth?: number | string;
   maxWidth?: number | string;
 };
-export interface DataTableColumn<T> extends SharedCtx, BaseColumnSizing {
+export interface DataTableColumn<T extends RowDataBase = RowDataBase> extends SharedCtx, BaseColumnSizing {
   key: string;
   header: string;
   /** false → column is skipped at render time; call site keeps the full columns array intact */

@@ -1,5 +1,5 @@
 import { DateCell, type DateFormat } from '../atoms/DateCell';
-import type { DataTableColumn } from '../DataTable';
+import type { DataTableColumn, RowDataBase } from '../DataTable';
 
 interface HasTimestamps {
   createdAt?: Date | string | null;
@@ -7,11 +7,11 @@ interface HasTimestamps {
   deletedAt?: Date | string | null;
 }
 
-export type DateColumnProps<D = any> = Omit<DataTableColumn<D>, 'render'> & {
+export type DateColumnProps<D extends RowDataBase = RowDataBase> = Omit<DataTableColumn<D>, 'render'> & {
   format?: DateFormat;
 };
 
-export function DateColumn<D>({
+export function DateColumn<D extends RowDataBase = RowDataBase>({
   format = 'time-s',
   ...props
 }: DateColumnProps<D>): DataTableColumn<D> {

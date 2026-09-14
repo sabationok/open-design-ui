@@ -1,11 +1,11 @@
 import { type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { MonoChip } from '../../atoms';
-import type { DataTableColumn } from '../DataTable';
+import type { DataTableColumn, RowDataBase } from '../DataTable';
 
 export type LinkColumnVariant = 'chip' | 'text';
 
-export type LinkColumnProps<D> = Partial<Omit<DataTableColumn<D>, 'render'>> & {
+export type LinkColumnProps<D extends RowDataBase = RowDataBase> = Partial<Omit<DataTableColumn<D>, 'render'>> & {
   href: (id: string, row: D) => string;
   chars?: number;
   label?: (id: string, row: D) => ReactNode;
@@ -14,7 +14,7 @@ export type LinkColumnProps<D> = Partial<Omit<DataTableColumn<D>, 'render'>> & {
 
 const EMPTY = <span className="text-[12px] text-zinc-400">—</span>;
 
-export function LinkColumn<D>({
+export function LinkColumn<D extends RowDataBase = RowDataBase>({
   href,
   chars = 12,
   label,
