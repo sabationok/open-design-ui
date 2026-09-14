@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { LoadingMessage } from './LoadingMessage';
-import { ErrorMessage } from './ErrorMessage';
+import type {Meta, StoryObj} from '@storybook/react-vite';
+import {LoadingMessage} from './LoadingMessage';
+import {ErrorMessage} from './ErrorMessage';
 
 const meta = {
   title: 'Atoms/Feedback',
@@ -9,28 +9,51 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+
+
+
+
+// export from src/storybook/components
+type HasChildren={
+    children?:React.ReactNode
+}
+
+
+const StoryComponents={
+    Container:({children,className}:HasChildren&{className?:string})=>{
+      return  <div className={`flex h-48 w-full items-stretch border border-zinc-200 ${className??''}`}>
+          {children}
+        </div>
+
+    }
+
+    // rest util components
+}
+
+const {Container}=StoryComponents
+
 export const Loading: Story = {
   render: () => (
-    <div className="flex h-48 w-full items-stretch border border-zinc-200">
+    <Container >
       <LoadingMessage msg="Loading events…" />
-    </div>
+    </Container>
   ),
 };
 
 export const ErrorWithMessage: Story = {
   name: 'Error (msg)',
   render: () => (
-    <div className="flex h-48 w-full items-stretch border border-zinc-200">
+    <Container >
       <ErrorMessage msg="Failed to load events." />
-    </div>
+    </Container>
   ),
 };
 
 export const ErrorWithCode: Story = {
   name: 'Error (code + msg)',
   render: () => (
-    <div className="flex h-48 w-full items-stretch border border-zinc-200">
+    <Container >
       <ErrorMessage code={404} msg="Event not found." />
-    </div>
+    </Container>
   ),
 };

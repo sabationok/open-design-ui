@@ -1,4 +1,4 @@
-import { cn } from '../lib/utils';
+import {cn} from '../lib/utils';
 
 export function ErrorMessage({ code, msg, className }: { code?: number; msg?: string; className?: string }) {
   return (
