@@ -48,8 +48,8 @@ function DeltaLabel({ delta }: { delta: string }) {
     <span
       className={cn(
         'text-xs font-medium',
-        isPos && 'text-wy-delivered-text',
-        isNeg && 'text-wy-failed-text',
+        isPos && 'text-vui-success-text',
+        isNeg && 'text-vui-danger-text',
         !isPos && !isNeg && 'text-zinc-500',
       )}
     >

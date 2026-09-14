@@ -75,9 +75,9 @@ const toneVariants = cva('inline-flex items-center font-semibold transition-colo
     { size: 'sm', tone: 'default', class: 'bg-zinc-100 text-zinc-600' },
     { size: 'sm', tone: 'secondary', class: 'bg-zinc-100 text-zinc-600' },
     { size: 'sm', tone: 'outline', class: 'bg-zinc-100 text-zinc-600' },
-    { size: 'sm', tone: 'destructive', class: 'bg-wy-failed-bg text-wy-failed-text' },
-    { size: 'sm', tone: 'success', class: 'bg-wy-delivered-bg text-wy-delivered-text' },
-    { size: 'sm', tone: 'warning', class: 'bg-wy-retrying-bg text-wy-retrying-text' },
+    { size: 'sm', tone: 'destructive', class: 'bg-vui-danger-bg text-vui-danger-text' },
+    { size: 'sm', tone: 'success', class: 'bg-vui-success-bg text-vui-success-text' },
+    { size: 'sm', tone: 'warning', class: 'bg-vui-warning-bg text-vui-warning-text' },
   ],
   defaultVariants: { size: 'md', tone: 'default' },
 });
@@ -86,12 +86,12 @@ const toneVariants = cva('inline-flex items-center font-semibold transition-colo
 // RequestStatusBadge, ...) via `entry.tone` so callers don't have to hand-write bg/text/border/dot classes
 // per status. `default`/`secondary` intentionally share the neutral "pending" look.
 const TONE_PALETTE: Record<BadgeTone, Required<BadgeColors>> = {
-  default: { main: 'bg-wy-pending-bg text-wy-pending-text', border: 'border-wy-pending-border', dot: 'bg-wy-pending' },
-  secondary: { main: 'bg-wy-pending-bg text-wy-pending-text', border: 'border-wy-pending-border', dot: 'bg-wy-pending' },
+  default: { main: 'bg-vui-neutral-bg text-vui-neutral-text', border: 'border-vui-neutral-border', dot: 'bg-vui-neutral' },
+  secondary: { main: 'bg-vui-neutral-bg text-vui-neutral-text', border: 'border-vui-neutral-border', dot: 'bg-vui-neutral' },
   outline: { main: 'bg-transparent text-zinc-700', border: 'border-zinc-300', dot: 'bg-zinc-400' },
-  destructive: { main: 'bg-wy-failed-bg text-wy-failed-text', border: 'border-wy-failed-border', dot: 'bg-wy-failed' },
-  success: { main: 'bg-wy-delivered-bg text-wy-delivered-text', border: 'border-wy-delivered-border', dot: 'bg-wy-delivered' },
-  warning: { main: 'bg-wy-retrying-bg text-wy-retrying-text', border: 'border-wy-retrying-border', dot: 'bg-wy-retrying' },
+  destructive: { main: 'bg-vui-danger-bg text-vui-danger-text', border: 'border-vui-danger-border', dot: 'bg-vui-danger' },
+  success: { main: 'bg-vui-success-bg text-vui-success-text', border: 'border-vui-success-border', dot: 'bg-vui-success' },
+  warning: { main: 'bg-vui-warning-bg text-vui-warning-text', border: 'border-vui-warning-border', dot: 'bg-vui-warning' },
 };
 
 const DEFAULT_STATUS_COLORS: Required<BadgeColors> = { main: 'bg-zinc-100 text-zinc-600', border: 'border-zinc-200', dot: 'bg-zinc-400' };

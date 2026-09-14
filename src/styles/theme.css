@@ -130,3 +130,14 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+
+@keyframes vui-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.animate-vui-shimmer {
+  animation: vui-shimmer 1.4s infinite;
+  background: linear-gradient(90deg, #f4f4f5 25%, #e9e9ec 50%, #f4f4f5 75%);
+  background-size: 800px 100%;
+}

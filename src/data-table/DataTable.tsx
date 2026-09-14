@@ -56,7 +56,7 @@ function SkeletonRow({ cols }: { cols: number }) {
       {Array.from({ length: cols }).map((_, i) => (
         <td key={i} className="px-3.5 py-[13px]">
           <span
-            className="block h-2.5 rounded-[3px] animate-wy-shimmer"
+            className="block h-2.5 rounded-[3px] animate-vui-shimmer"
             style={{ width: `${60 + (i % 3) * 15}%` }}
           />
         </td>

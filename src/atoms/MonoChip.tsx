@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
 const BASE =
-  'inline-flex items-center rounded-[4px] bg-wy-accent-bg px-1.5 py-0.5 font-mono text-[11px] text-wy-accent-text';
+  'inline-flex items-center rounded-[4px] bg-vui-accent-bg px-1.5 py-0.5 font-mono text-[11px] text-vui-accent-text';
 
 export function MonoChip({
   children,
