@@ -1,5 +1,11 @@
 # @open_design/ui
 
+## 0.1.1
+
+### Patch Changes
+
+- 398493b: Verify automated npm publish via CI after resolving the first-publish token limitation.
+
 ## 0.1.0
 
 ### Minor Changes
