@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SectionCard } from './SectionCard';
-import { Button } from '../components/ui/button';
+import { SectionCard } from '../../molecules/SectionCard';
+import { Button } from '../../components/ui/button';
 
 const meta = {
   title: 'Molecules/SectionCard',

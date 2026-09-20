@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { JSONPathPicker } from './JSONPathPicker';
+import { JSONPathPicker } from '../../molecules/JSONPathPicker';
 
 const MOCK_PATH_PICKER_SAMPLE = {
   event: 'payment_intent.succeeded',

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PageTitle } from './PageTitle';
-import { SectionLabel } from './SectionLabel';
-import { MetaLabel } from './MetaLabel';
-import { MetricCount } from './MetricCount';
+import { PageTitle } from '../../atoms/PageTitle';
+import { SectionLabel } from '../../atoms/SectionLabel';
+import { MetaLabel } from '../../atoms/MetaLabel';
+import { MetricCount } from '../../atoms/MetricCount';
 
 const meta = {
   title: 'Atoms/Typography',

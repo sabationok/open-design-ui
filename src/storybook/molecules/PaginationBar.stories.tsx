@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PaginationBar } from './PaginationBar';
+import { PaginationBar } from '../../molecules/PaginationBar';
 
 const meta = {
   title: 'Molecules/PaginationBar',

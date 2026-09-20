@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react-vite';
-import {LoadingMessage} from './LoadingMessage';
-import {ErrorMessage} from './ErrorMessage';
+import {LoadingMessage} from '../../atoms/LoadingMessage';
+import {ErrorMessage} from '../../atoms/ErrorMessage';
 
 const meta = {
   title: 'Atoms/Feedback',

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FilterBar } from './FilterBar';
-import { FilterSelect } from './FilterSelect';
-import { SearchInput } from './SearchInput';
+import { FilterBar } from '../../molecules/FilterBar';
+import { FilterSelect } from '../../molecules/FilterSelect';
+import { SearchInput } from '../../molecules/SearchInput';
 
 const FILTER_STATUS_OPTIONS = [
   { value: '', label: 'All statuses' },

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DataTableFilters, type FilterConfig } from '../molecules/DataTableFilters';
-import { FilterBar } from '../molecules/FilterBar';
-import { SearchInput } from '../molecules/SearchInput';
-import { JSONViewer } from '../molecules/JSONViewer';
+import { DataTableFilters, type FilterConfig } from '../../molecules/DataTableFilters';
+import { FilterBar } from '../../molecules/FilterBar';
+import { SearchInput } from '../../molecules/SearchInput';
+import { JSONViewer } from '../../molecules/JSONViewer';
 
 const MOCK_FILTERS: FilterConfig[] = [
   {

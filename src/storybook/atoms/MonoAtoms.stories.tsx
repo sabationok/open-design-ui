@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MonoId } from './MonoId';
-import { MonoValue } from './MonoValue';
-import { MonoChip } from './MonoChip';
-import { BreadcrumbSep } from './BreadcrumbSep';
+import { MonoId } from '../../atoms/MonoId';
+import { MonoValue } from '../../atoms/MonoValue';
+import { MonoChip } from '../../atoms/MonoChip';
+import { BreadcrumbSep } from '../../atoms/BreadcrumbSep';
 
 type Args = { value: string };
 

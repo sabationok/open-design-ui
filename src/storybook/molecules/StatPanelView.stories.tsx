@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { StatPanelView, type ChartPoint, type ChartType } from './StatPanelView';
+import { StatPanelView, type ChartPoint, type ChartType } from '../../molecules/StatPanelView';
 
 interface MockPanelConfig {
   id: string;

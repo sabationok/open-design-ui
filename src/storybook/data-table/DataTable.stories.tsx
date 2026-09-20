@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ShadcnDataTable } from './ShadcnDataTable';
-import { IdColumn } from './molecules/IdColumn';
-import { MonoColumn } from './molecules/MonoColumn';
-import { LinkColumn } from './molecules/LinkColumn';
-import { DateColumn } from './molecules/DateColumn';
-import type { DataTableColumn } from './DataTable';
-import { Badge, type BadgeConfig } from '../atoms/Badge';
+import { ShadcnDataTable } from '../../data-table/ShadcnDataTable';
+import { IdColumn } from '../../data-table/molecules/IdColumn';
+import { MonoColumn } from '../../data-table/molecules/MonoColumn';
+import { LinkColumn } from '../../data-table/molecules/LinkColumn';
+import { DateColumn } from '../../data-table/molecules/DateColumn';
+import type { DataTableColumn } from '../../data-table/DataTable';
+import { Badge, type BadgeConfig } from '../../atoms/Badge';
 
 // Illustrative row shape — real apps supply their own domain type (see e.g.
 // dashboard-app's WebhookEventType) and their own status/provider Badge configs

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DetailSidePanel } from './DetailSidePanel';
-import { MetaList } from './MetaList';
-import { MetaField } from './MetaField';
-import { MonoValue } from '../atoms';
-import { Badge } from '../atoms/Badge';
+import { DetailSidePanel } from '../../molecules/DetailSidePanel';
+import { MetaList } from '../../molecules/MetaList';
+import { MetaField } from '../../molecules/MetaField';
+import { MonoValue } from '../../atoms';
+import { Badge } from '../../atoms/Badge';
 
 const meta = {
   title: 'Molecules/DetailSidePanel',

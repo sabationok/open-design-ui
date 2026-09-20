@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { StatCard } from './StatCard';
-import { StatsGrid } from './StatsGrid';
+import { StatCard } from '../../molecules/StatCard';
+import { StatsGrid } from '../../molecules/StatsGrid';
 
 const MOCK_STATS = { received: 2415, delivered: 1893, rejected: 108, failed: 414, retrying: 23 };
 const MOCK_PREV = { received: 2100, delivered: 1720, rejected: 90, failed: 290, retrying: 41 };
