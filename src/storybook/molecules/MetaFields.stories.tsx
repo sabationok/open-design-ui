@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MetaField } from './MetaField';
-import { MetaList } from './MetaList';
-import { KeyValueRow } from './KeyValueRow';
-import { MonoId, MonoValue } from '../atoms';
-import { Badge } from '../atoms/Badge';
+import { MetaField } from '../../molecules/MetaField';
+import { MetaList } from '../../molecules/MetaList';
+import { KeyValueRow } from '../../molecules/KeyValueRow';
+import { MonoId, MonoValue } from '../../atoms';
+import { Badge } from '../../atoms/Badge';
 
 const meta = {
   title: 'Molecules/MetaFields',

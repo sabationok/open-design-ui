@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UrlBox } from './UrlBox';
+import { UrlBox } from '../../atoms/UrlBox';
 
 const meta = {
   title: 'Atoms/UrlBox',

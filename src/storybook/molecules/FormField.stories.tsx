@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FormField } from './FormField';
-import { Input } from '../components/ui/input';
+import { FormField } from '../../molecules/FormField';
+import { Input } from '../../components/ui/input';
 
 const meta = {
   title: 'Molecules/FormField',

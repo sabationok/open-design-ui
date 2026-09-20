@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DotIndicator } from './DotIndicator';
+import { DotIndicator } from '../../atoms/DotIndicator';
 
 const meta = {
   title: 'Atoms/DotIndicator',

@@ -31,6 +31,8 @@ export {
   type LocalDirectoryCollection,
 } from './DataTableFilters';
 export { Timeline, type TimelineProps } from './Timeline';
+export { ProgressLine, type ProgressLineProps } from './ProgressLine';
+export { AnchorNav, type AnchorNavProps, type AnchorNavItem } from './AnchorNav';
 export { ReqResPanel, type ReqResPanelProps } from './ReqResPanel';
 export { StatPanelView, PanelChart, type StatPanelViewProps, type ChartType, type ChartPoint } from './StatPanelView';
 export {

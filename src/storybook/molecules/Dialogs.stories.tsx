@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DialogProvider, useDialogs } from './DialogProvider';
-import { Button } from '../components/ui/button';
+import { DialogProvider, useDialogs } from '../../molecules/DialogProvider';
+import { Button } from '../../components/ui/button';
 
 const meta = {
   title: 'Molecules/Dialogs',

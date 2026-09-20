@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TabBar } from './TabBar';
-import { TabButton } from './TabButton';
-import { TabButtons } from './TabButtons';
+import { TabBar } from '../../molecules/TabBar';
+import { TabButton } from '../../molecules/TabButton';
+import { TabButtons } from '../../molecules/TabButtons';
 
 const DEMO_TABS = ['Inbound', 'Outbound', 'Analytics'] as const;
 type DemoTab = (typeof DEMO_TABS)[number];

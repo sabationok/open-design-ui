@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PageHeader } from './PageHeader';
-import { BreadcrumbNav } from './BreadcrumbNav';
-import { PageTitle } from '../atoms';
-import { Button } from '../components/ui/button';
+import { PageHeader } from '../../molecules/PageHeader';
+import { BreadcrumbNav } from '../../molecules/BreadcrumbNav';
+import { PageTitle } from '../../atoms';
+import { Button } from '../../components/ui/button';
 
 const meta = {
   title: 'Molecules/PageHeader',

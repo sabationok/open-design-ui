@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge, type BadgeConfig, type BadgeTone } from './Badge';
+import { Badge, type BadgeConfig, type BadgeTone } from '../../atoms/Badge';
 
 // export from src/storybook/components
 const Row = ({ children }: { children: React.ReactNode }) => (
