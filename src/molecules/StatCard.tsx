@@ -18,10 +18,10 @@ function calcTrend(current: number, prev: number): TrendResult {
 }
 
 const TREND_STYLES: Record<TrendDir, string> = {
-  up:   'text-emerald-600',
-  down: 'text-red-500',
-  flat: 'text-zinc-400',
-  new:  'text-zinc-400',
+  up:   'text-ds-green-900',
+  down: 'text-ds-red-900',
+  flat: 'text-ds-gray-700',
+  new:  'text-ds-gray-700',
 };
 
 function TrendIndicator({ trend }: { trend: TrendResult }) {
@@ -50,7 +50,7 @@ function DeltaLabel({ delta }: { delta: string }) {
         'text-xs font-medium',
         isPos && 'text-vui-success-text',
         isNeg && 'text-vui-danger-text',
-        !isPos && !isNeg && 'text-zinc-500',
+        !isPos && !isNeg && 'text-muted-foreground',
       )}
     >
       {delta}
@@ -89,8 +89,8 @@ export function StatCard({
     : null;
 
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-4">
-      <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">{label}</div>
+    <div className="rounded-xl border border-border bg-background p-4">
+      <div className="text-[11px] font-semibold uppercase tracking-wider text-ds-gray-700">{label}</div>
       <div className="mt-2 flex items-baseline justify-between gap-2">
         <span
           className={cn(

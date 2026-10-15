@@ -7,7 +7,7 @@ export function DateCell({
   value: string | number | null | undefined;
   format?: DateFormat;
 }) {
-  if (!value) return <span className="text-[12px] text-zinc-400">—</span>;
+  if (!value) return <span className="text-[12px] text-ds-gray-700">—</span>;
 
   const d = new Date(value);
   let text: string;
@@ -26,5 +26,5 @@ export function DateCell({
     });
   }
 
-  return <span className="font-mono text-[12px] text-zinc-500">{text}</span>;
+  return <span className="font-mono text-[12px] text-muted-foreground">{text}</span>;
 }

@@ -21,14 +21,14 @@ export interface ChartPoint {
 }
 
 const CHART_ACCENT: Record<ChartType, { stroke: string; fill: string }> = {
-  bar: { stroke: '#818cf8', fill: '#e0e7ff' },
-  line: { stroke: '#6366f1', fill: '#6366f1' },
-  area: { stroke: '#f97316', fill: '#fff7ed' },
+  bar: { stroke: 'var(--ds-blue-700)', fill: 'var(--ds-blue-100)' },
+  line: { stroke: 'var(--ds-blue-700)', fill: 'var(--ds-blue-700)' },
+  area: { stroke: 'var(--ds-blue-700)', fill: 'var(--ds-blue-100)' },
 };
 
 function ScopePill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[11px] text-zinc-500">
+    <span className="rounded-full border border-border bg-background px-2 py-0.5 text-[11px] text-muted-foreground">
       {children}
     </span>
   );
@@ -37,7 +37,7 @@ function ScopePill({ children }: { children: React.ReactNode }) {
 function ChartTypeToggle({ value, onChange }: { value: ChartType; onChange?: (t: ChartType) => void }) {
   const types: ChartType[] = ['bar', 'line', 'area'];
   return (
-    <div className="flex overflow-hidden rounded border border-zinc-200 bg-white">
+    <div className="flex overflow-hidden rounded border border-border bg-background">
       {types.map((t) => (
         <button
           key={t}
@@ -45,7 +45,7 @@ function ChartTypeToggle({ value, onChange }: { value: ChartType; onChange?: (t:
           onClick={() => onChange?.(t)}
           className={cn(
             'px-2.5 py-0.5 text-[12px] capitalize transition-colors',
-            value === t ? 'bg-zinc-900 text-white' : 'bg-white text-zinc-400 hover:text-zinc-600',
+            value === t ? 'bg-primary text-primary-foreground' : 'bg-background text-ds-gray-700 hover:text-muted-foreground',
           )}
         >
           {t.charAt(0).toUpperCase() + t.slice(1)}
@@ -58,7 +58,7 @@ function ChartTypeToggle({ value, onChange }: { value: ChartType; onChange?: (t:
 function PanelEmpty() {
   return (
     <div className="flex h-[180px] items-center justify-center">
-      <p className="text-[13px] text-zinc-400">No data for this period</p>
+      <p className="text-[13px] text-ds-gray-700">No data for this period</p>
     </div>
   );
 }
@@ -67,13 +67,13 @@ export function PanelChart({ data, chartType }: { data: ChartPoint[]; chartType:
   const { stroke, fill } = CHART_ACCENT[chartType];
 
   const xAxis = (
-    <XAxis dataKey="period" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#a1a1aa' }} dy={4} />
+    <XAxis dataKey="period" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: 'var(--ds-gray-700)' }} dy={4} />
   );
   const yAxis = <YAxis hide />;
   const tooltip = (
     <Tooltip
-      cursor={{ fill: 'rgba(0,0,0,0.04)' }}
-      contentStyle={{ fontSize: 12, border: '1px solid #e4e4e7', borderRadius: 6, boxShadow: 'none', padding: '4px 10px' }}
+      cursor={{ fill: 'var(--ds-gray-alpha-100)' }}
+      contentStyle={{ fontSize: 12, border: '1px solid var(--ds-gray-alpha-400)', borderRadius: 6, boxShadow: 'var(--ds-shadow-small)', background: 'var(--ds-background-100)', color: 'var(--ds-gray-1000)', padding: '4px 10px' }}
     />
   );
 
@@ -121,7 +121,7 @@ export function StatPanelView({ config, chartData, isLoading, onEdit, onDelete, 
     <Card className="flex flex-col">
       <CardHeader className="flex flex-row items-center justify-between gap-2 pb-3 pt-4">
         <div className="flex min-w-0 items-center gap-1.5">
-          <span className="truncate text-[14px] font-semibold text-zinc-900">{config.title}</span>
+          <span className="truncate text-[14px] font-semibold text-foreground">{config.title}</span>
           <ScopePill>{config.scope}</ScopePill>
           <ScopePill>{config.periodPreset}</ScopePill>
         </div>

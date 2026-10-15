@@ -13,7 +13,7 @@ export function BackLink({
     <button
       type="button"
       onClick={onClick}
-      className={cn('text-[13px] text-zinc-500 transition-colors hover:text-zinc-900', className)}
+      className={cn('text-[13px] text-muted-foreground transition-colors hover:text-foreground', className)}
     >
       {children}
     </button>

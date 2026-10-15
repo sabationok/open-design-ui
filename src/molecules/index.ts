@@ -13,16 +13,27 @@ export { MetaField } from './MetaField';
 export { MetaList } from './MetaList';
 export { DetailSidePanel } from './DetailSidePanel';
 export { FilterBar } from './FilterBar';
+/** @deprecated Use Select. */
 export { FilterSelect } from './FilterSelect';
 export { SearchInput } from './SearchInput';
 export { TabBar } from './TabBar';
 export { TabButton } from './TabButton';
-export { FormField } from './FormField';
+export { FormField, type FormFieldProps } from './FormField';
 export { KeyValueRow } from './KeyValueRow';
 export { SectionCard } from './SectionCard';
 export { DetailLayout } from './DetailLayout';
 export { SidebarNavLink, type SidebarNavLinkProps } from './SidebarNavLink';
+/** @deprecated Use MetricGrid. */
 export { StatsGrid, type StatsGridProps } from './StatsGrid';
+export {
+  Metric,
+  MetricGrid,
+  type MetricProps,
+  type MetricGridProps,
+  type MetricItem,
+  type MetricGood,
+} from './MetricGrid';
+export { BarList, type BarListProps, type BarListNode } from './BarList';
 export {
   DataTableFilters,
   type DataTableFiltersProps,
@@ -31,6 +42,8 @@ export {
   type LocalDirectoryCollection,
 } from './DataTableFilters';
 export { Timeline, type TimelineProps } from './Timeline';
+export { ProgressLine, type ProgressLineProps } from './ProgressLine';
+export { AnchorNav, type AnchorNavProps, type AnchorNavItem } from './AnchorNav';
 export { ReqResPanel, type ReqResPanelProps } from './ReqResPanel';
 export { StatPanelView, PanelChart, type StatPanelViewProps, type ChartType, type ChartPoint } from './StatPanelView';
 export {

@@ -49,23 +49,14 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-* {
-  border-color: var(--border);
-  outline-color: var(--ring);
-}
-
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
-  margin: 0;
-}
-
+/* Defaults must live in a layer: unlayered rules beat every @layer utilities class,
+   so a bare `* { border-color }` would silently cancel border-ds-red-700, border-vui-*… */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    margin: 0;
   }
 }

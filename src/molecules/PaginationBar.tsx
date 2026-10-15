@@ -26,7 +26,7 @@ export function PaginationBar({
   return (
     <div className={`mt-3.5 flex items-center justify-between gap-3 ${className ?? ''}`}>
       <div className="flex items-center gap-3">
-        <span className="text-[13px] text-zinc-500">
+        <span className="text-[13px] text-muted-foreground">
           Page {page + 1} of {totalPages}
           {total != null && noun ? ` · ${total.toLocaleString()} ${noun}` : ''}
         </span>
@@ -34,7 +34,7 @@ export function PaginationBar({
           <select
             value={pageSize}
             onChange={(e) => onPageSizeChange(Number(e.target.value))}
-            className="rounded-md border border-zinc-200 px-2 py-1.5 text-[13px] text-zinc-600 hover:bg-zinc-50"
+            className="rounded-md border border-border px-2 py-1.5 text-[13px] text-muted-foreground hover:bg-ds-gray-alpha-100"
           >
             {PAGE_SIZE_OPTIONS.map((s) => (
               <option key={s} value={s}>{s} / page</option>
@@ -47,7 +47,7 @@ export function PaginationBar({
           type="button"
           disabled={page === 0}
           onClick={onPrev}
-          className="rounded-md border border-zinc-200 px-3 py-1.5 text-[13px] text-zinc-600 disabled:text-zinc-300 hover:bg-zinc-50"
+          className="rounded-md border border-border px-3 py-1.5 text-[13px] text-muted-foreground disabled:text-ds-gray-600 hover:bg-ds-gray-alpha-100"
         >
           Prev
         </button>
@@ -55,7 +55,7 @@ export function PaginationBar({
           type="button"
           disabled={page >= totalPages - 1}
           onClick={onNext}
-          className="rounded-md border border-zinc-200 px-3 py-1.5 text-[13px] text-zinc-900 disabled:text-zinc-300 hover:bg-zinc-50"
+          className="rounded-md border border-border px-3 py-1.5 text-[13px] text-foreground disabled:text-ds-gray-600 hover:bg-ds-gray-alpha-100"
         >
           Next
         </button>

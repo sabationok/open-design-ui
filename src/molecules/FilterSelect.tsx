@@ -1,10 +1,7 @@
+import { Select, type SelectProps } from '../components/ui/select';
 import { cn } from '../lib/utils';
 
-export function FilterSelect({ className, ...props }: React.ComponentProps<'select'>) {
-  return (
-    <select
-      className={cn('rounded-md border border-zinc-200 bg-white px-3 py-[7px] text-[13px] text-zinc-700 focus:outline-none', className)}
-      {...props}
-    />
-  );
+/** @deprecated Use `Select` — same control; `FilterSelect` only sets `w-auto` for filter bars. */
+export function FilterSelect({ wrapperClassName, ...props }: SelectProps) {
+  return <Select wrapperClassName={cn('w-auto', wrapperClassName)} {...props} />;
 }
