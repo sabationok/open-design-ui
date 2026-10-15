@@ -13,7 +13,7 @@ export function FilterChip({ label, onRemove, variant = 'default', className }: 
       className={cn(
         'inline-flex items-center gap-1.5 rounded-md text-sm',
         variant === 'default' && 'border border-vui-accent-border bg-vui-accent-bg px-3 py-[7px] text-vui-accent-text',
-        variant === 'directory' && 'border border-dashed border-cyan-400 bg-cyan-50 px-3 py-[7px] font-mono text-xs text-cyan-700',
+        variant === 'directory' && 'border border-dashed border-vui-accent-border bg-vui-accent-bg px-3 py-[7px] font-mono text-xs text-vui-accent-text',
         className,
       )}
     >

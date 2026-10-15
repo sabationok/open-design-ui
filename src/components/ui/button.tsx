@@ -4,22 +4,23 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        default: 'bg-zinc-900 text-white hover:bg-zinc-800',
-        destructive: 'border border-red-200 bg-white text-red-600 hover:bg-red-50',
-        outline: 'border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50 disabled:text-zinc-300',
-        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive: 'border border-ds-red-400 bg-background text-ds-red-900 hover:bg-ds-red-100',
+        outline: 'border border-border bg-background text-foreground hover:bg-ds-gray-alpha-100 disabled:text-ds-gray-600',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-ds-gray-200',
+        ghost: 'text-foreground hover:bg-ds-gray-alpha-100',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
-        default: 'px-3.5 py-[7px]',
-        sm: 'px-2.5 py-1 text-xs',
-        lg: 'px-6 py-2.5 text-sm',
-        icon: 'h-9 w-9 p-0',
+        // Geist scale: tiny 24 · small 32 · medium 40. Dashboards default to "small".
+        default: 'h-8 px-3',
+        sm: 'h-6 px-2 text-xs [&_svg]:size-3.5',
+        lg: 'h-10 px-4',
+        icon: 'h-8 w-8 p-0',
       },
     },
     defaultVariants: {

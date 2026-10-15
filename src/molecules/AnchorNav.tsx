@@ -34,7 +34,7 @@ export function AnchorNav({ items, activeId, onSelect, className }: AnchorNavPro
             aria-current={state === 'active' ? 'true' : undefined}
             className={cn(
               'relative rounded-md py-1.5 text-[13px] transition-colors',
-              state === 'active' ? 'font-medium text-vui-accent-text' : 'text-zinc-600 hover:text-zinc-900',
+              state === 'active' ? 'font-medium text-vui-accent-text' : 'text-muted-foreground hover:text-foreground',
             )}
           >
             <AnchorDot state={state} />

@@ -7,12 +7,14 @@ function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/** @deprecated Use `MetricGridProps`. */
 export interface StatsGridProps {
   stats: StatValues;
   prev?: StatValues;
   className?: string;
 }
 
+/** @deprecated Use `MetricGrid` — data-driven list with format, delta direction and sparklines. Will be removed in the next major. */
 export function StatsGrid({ stats, prev, className }: StatsGridProps) {
   return (
     <div

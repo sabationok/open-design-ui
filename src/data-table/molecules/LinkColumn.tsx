@@ -12,7 +12,7 @@ export type LinkColumnProps<D extends RowDataBase = RowDataBase> = Partial<Omit<
   variant?: LinkColumnVariant;
 };
 
-const EMPTY = <span className="text-[12px] text-zinc-400">—</span>;
+const EMPTY = <span className="text-[12px] text-ds-gray-700">—</span>;
 
 export function LinkColumn<D extends RowDataBase = RowDataBase>({
   href,
@@ -36,7 +36,7 @@ export function LinkColumn<D extends RowDataBase = RowDataBase>({
           <Link
             to={to}
             onClick={(e) => e.stopPropagation()}
-            className="text-[12px] text-indigo-600 hover:underline"
+            className="text-[12px] text-ds-blue-900 hover:underline"
           >
             {content}
           </Link>

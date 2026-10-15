@@ -1,5 +1,7 @@
 {
   "Atoms/IndicatorBox": "2026-09-20",
   "Molecules/ProgressLine": "2026-09-20",
-  "Molecules/AnchorNav": "2026-09-20"
+  "Molecules/AnchorNav": "2026-09-20",
+  "Molecules/MetricGrid": "2026-10-14",
+  "Molecules/BarList": "2026-10-14"
 }

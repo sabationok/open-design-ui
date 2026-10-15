@@ -69,12 +69,12 @@ const toneVariants = cva('inline-flex items-center font-semibold transition-colo
     { size: 'md', tone: 'default', class: 'border-transparent bg-primary text-primary-foreground' },
     { size: 'md', tone: 'secondary', class: 'border-transparent bg-secondary text-secondary-foreground' },
     { size: 'md', tone: 'destructive', class: 'border-transparent bg-destructive text-destructive-foreground' },
-    { size: 'md', tone: 'outline', class: 'text-foreground' },
-    { size: 'md', tone: 'success', class: 'border-transparent bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
-    { size: 'md', tone: 'warning', class: 'border-transparent bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' },
-    { size: 'sm', tone: 'default', class: 'bg-zinc-100 text-zinc-600' },
-    { size: 'sm', tone: 'secondary', class: 'bg-zinc-100 text-zinc-600' },
-    { size: 'sm', tone: 'outline', class: 'bg-zinc-100 text-zinc-600' },
+    { size: 'md', tone: 'outline', class: 'border-border text-foreground' },
+    { size: 'md', tone: 'success', class: 'border-transparent bg-vui-success-bg text-vui-success-text' },
+    { size: 'md', tone: 'warning', class: 'border-transparent bg-vui-warning-bg text-vui-warning-text' },
+    { size: 'sm', tone: 'default', class: 'bg-ds-gray-100 text-muted-foreground' },
+    { size: 'sm', tone: 'secondary', class: 'bg-ds-gray-100 text-muted-foreground' },
+    { size: 'sm', tone: 'outline', class: 'bg-ds-gray-100 text-muted-foreground' },
     { size: 'sm', tone: 'destructive', class: 'bg-vui-danger-bg text-vui-danger-text' },
     { size: 'sm', tone: 'success', class: 'bg-vui-success-bg text-vui-success-text' },
     { size: 'sm', tone: 'warning', class: 'bg-vui-warning-bg text-vui-warning-text' },
@@ -88,14 +88,14 @@ const toneVariants = cva('inline-flex items-center font-semibold transition-colo
 const TONE_PALETTE: Record<BadgeTone, Required<BadgeColors>> = {
   default: { main: 'bg-vui-neutral-bg text-vui-neutral-text', border: 'border-vui-neutral-border', dot: 'bg-vui-neutral' },
   secondary: { main: 'bg-vui-neutral-bg text-vui-neutral-text', border: 'border-vui-neutral-border', dot: 'bg-vui-neutral' },
-  outline: { main: 'bg-transparent text-zinc-700', border: 'border-zinc-300', dot: 'bg-zinc-400' },
+  outline: { main: 'bg-transparent text-foreground', border: 'border-ds-gray-alpha-500', dot: 'bg-ds-gray-600' },
   destructive: { main: 'bg-vui-danger-bg text-vui-danger-text', border: 'border-vui-danger-border', dot: 'bg-vui-danger' },
   success: { main: 'bg-vui-success-bg text-vui-success-text', border: 'border-vui-success-border', dot: 'bg-vui-success' },
   warning: { main: 'bg-vui-warning-bg text-vui-warning-text', border: 'border-vui-warning-border', dot: 'bg-vui-warning' },
 };
 
-const DEFAULT_STATUS_COLORS: Required<BadgeColors> = { main: 'bg-zinc-100 text-zinc-600', border: 'border-zinc-200', dot: 'bg-zinc-400' };
-const DEFAULT_SWATCH_COLOR = '#71717a';
+const DEFAULT_STATUS_COLORS: Required<BadgeColors> = { main: 'bg-ds-gray-100 text-muted-foreground', border: 'border-border', dot: 'bg-ds-gray-600' };
+const DEFAULT_SWATCH_COLOR = 'var(--ds-gray-800)';
 
 function resolveColors(entry: BadgeConfigEntry): Required<BadgeColors> {
   const palette = entry.tone ? TONE_PALETTE[entry.tone] : DEFAULT_STATUS_COLORS;
@@ -128,7 +128,7 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-[7px] rounded-[4px] border border-zinc-200 bg-white px-2.5 py-1 text-xs font-medium text-zinc-700',
+          'inline-flex items-center gap-[7px] rounded-[4px] border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground',
           className,
         )}
       >

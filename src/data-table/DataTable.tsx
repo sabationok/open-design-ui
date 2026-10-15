@@ -87,17 +87,17 @@ export function DataTable<T extends { id: string }>({
   });
 
   return (
-    <div className={cn('overflow-auto rounded-md border border-zinc-200', className)}>
+    <div className={cn('overflow-auto rounded-md border border-border', className)}>
       <table className="w-full">
         <thead className={cn(stickyHeader && 'sticky top-0 z-10')}>
-          <tr className="border-b border-zinc-200 bg-zinc-50">
+          <tr className="border-b border-border bg-ds-background-200">
             {visibleColumns.map((col, i) => (
               <th
                 key={col.key}
                 style={colStyle(col)}
                 className={cn(
-                  'px-3.5 py-[9px] text-left text-[11px] font-semibold uppercase tracking-[0.04em] text-zinc-500 bg-zinc-50',
-                  stickyFirstColumn && i === 0 && 'sticky left-0 z-[1] shadow-[1px_0_0_#e4e4e7]',
+                  'px-3.5 py-[9px] text-left text-[11px] font-semibold uppercase tracking-[0.04em] text-muted-foreground bg-ds-background-200',
+                  stickyFirstColumn && i === 0 && 'sticky left-0 z-[1] shadow-[1px_0_0_var(--ds-gray-alpha-400)]',
                   col.className,
                 )}
               >
@@ -125,12 +125,12 @@ export function DataTable<T extends { id: string }>({
                   key={row.id}
                   onClick={() => onRowClick?.(row)}
                   className={cn(
-                    'border-b border-zinc-100 last:border-0 text-[13px] transition-colors',
-                    i % 2 === 1 ? 'bg-zinc-50' : 'bg-white',
-                    onRowClick && 'cursor-pointer hover:bg-zinc-100',
-                    isSelected && 'bg-zinc-100',
+                    'border-b border-ds-gray-alpha-200 last:border-0 text-[13px] transition-colors',
+                    i % 2 === 1 ? 'bg-ds-background-200' : 'bg-background',
+                    onRowClick && 'cursor-pointer hover:bg-ds-gray-alpha-200',
+                    isSelected && 'bg-ds-gray-100',
                   )}
-                  style={isSelected ? { boxShadow: 'inset 2px 0 0 #18181b' } : undefined}
+                  style={isSelected ? { boxShadow: 'inset 2px 0 0 var(--ds-gray-1000)' } : undefined}
                 >
                   {visibleColumns.map((col, ci) => {
                     const cellCtx: DataTableCell<T> = {
@@ -144,7 +144,7 @@ export function DataTable<T extends { id: string }>({
                         style={colStyle(col)}
                         className={cn(
                           'px-3.5 py-[11px]',
-                          stickyFirstColumn && ci === 0 && 'sticky left-0 bg-inherit shadow-[1px_0_0_#e4e4e7]',
+                          stickyFirstColumn && ci === 0 && 'sticky left-0 bg-inherit shadow-[1px_0_0_var(--ds-gray-alpha-400)]',
                           col.className,
                         )}
                       >

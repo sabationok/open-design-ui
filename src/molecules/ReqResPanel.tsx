@@ -9,7 +9,7 @@ export interface ReqResPanelProps {
 
 function ReqResLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+    <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-ds-gray-700">
       {children}
     </div>
   );
@@ -17,7 +17,7 @@ function ReqResLabel({ children }: { children: ReactNode }) {
 
 export function ReqResPanel({ request, response, emptyMessage, className }: ReqResPanelProps) {
   if (!request && !response) {
-    return <p className="py-2 text-[12px] text-zinc-400">{emptyMessage}</p>;
+    return <p className="py-2 text-[12px] text-ds-gray-700">{emptyMessage}</p>;
   }
   return (
     <div className={className ?? 'flex flex-col gap-3'}>

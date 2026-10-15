@@ -3,7 +3,7 @@ export function BackButton({ onClick, children }: { onClick(): void; children: R
     <button
       type="button"
       onClick={onClick}
-      className="text-[13px] text-zinc-500 hover:text-zinc-900 transition-colors"
+      className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
     >
       {children}
     </button>

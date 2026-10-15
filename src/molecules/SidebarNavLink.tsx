@@ -12,7 +12,7 @@ export type SidebarNavLinkProps = {
 export function SidebarNavLink({ to, end, icon: Icon, disabled, children }: SidebarNavLinkProps) {
   if (disabled) {
     return (
-      <span className="flex cursor-not-allowed select-none items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] text-zinc-400">
+      <span className="flex cursor-not-allowed select-none items-center gap-2.5 rounded-md px-2.5 py-[7px] text-sm text-ds-gray-700">
         <Icon className="h-4 w-4 shrink-0" />
         {children}
       </span>
@@ -24,10 +24,10 @@ export function SidebarNavLink({ to, end, icon: Icon, disabled, children }: Side
       end={end}
       className={({ isActive }) =>
         cn(
-          'flex items-center gap-2.5 rounded-md px-2.5 py-[7px] text-[13px] transition-colors',
+          'flex items-center gap-2.5 rounded-md px-2.5 py-[7px] text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
           isActive
-            ? 'mx-[-2px] bg-[#ecebff] font-medium text-[#4338ca] shadow-[inset_2px_0_0_#635BFF]'
-            : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900',
+            ? 'bg-ds-gray-100 font-medium text-foreground'
+            : 'text-muted-foreground hover:bg-ds-gray-alpha-100 hover:text-foreground',
         )
       }
     >

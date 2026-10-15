@@ -25,7 +25,7 @@ const TONE_BAR: Record<IndicatorBoxTone, string> = {
  */
 export function IndicatorBox({ tone = 'neutral', color, className, children }: IndicatorBoxProps) {
   return (
-    <div className={cn('relative overflow-hidden rounded-md border border-zinc-200 bg-white pl-4 pr-3.5 py-3', className)}>
+    <div className={cn('relative overflow-hidden rounded-md border border-border bg-background pl-4 pr-3.5 py-3', className)}>
       <span className={cn('absolute inset-y-0 left-0 w-[3px]', !color && TONE_BAR[tone])} style={color ? { background: color } : undefined} />
       {children}
     </div>

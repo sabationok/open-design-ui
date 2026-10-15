@@ -16,6 +16,6 @@ const SIZE_CLASSES: Record<DotSize, string> = {
 };
 
 /** Plain colored circle — the shared building block behind HealthDot, DotIndicator, and Badge's status dot. */
-export function Dot({ color = 'bg-zinc-400', size = 'xs', className }: DotProps) {
+export function Dot({ color = 'bg-ds-gray-600', size = 'xs', className }: DotProps) {
   return <span className={cn('inline-block shrink-0 rounded-full', SIZE_CLASSES[size], color, className)} />;
 }

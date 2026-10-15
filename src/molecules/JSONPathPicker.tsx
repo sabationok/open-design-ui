@@ -36,8 +36,8 @@ export function JSONPathPicker({ value, onChange, sample, placeholder, className
             type="button"
             onClick={() => setTreeOpen((o) => !o)}
             className={cn(
-              'flex shrink-0 items-center gap-1 rounded-md border border-zinc-200 px-2 py-[7px] text-[12px] text-zinc-600 hover:bg-zinc-50',
-              treeOpen && 'bg-zinc-50',
+              'flex shrink-0 items-center gap-1 rounded-md border border-border px-2 py-[7px] text-[12px] text-muted-foreground hover:bg-ds-gray-alpha-100',
+              treeOpen && 'bg-ds-background-200',
             )}
           >
             <ListTree className="size-3.5" />

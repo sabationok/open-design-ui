@@ -87,13 +87,13 @@ export function ShadcnDataTable<T extends { id: string }>({
   });
 
   return (
-    <div className={cn('overflow-auto rounded-md border border-zinc-200', className)}>
+    <div className={cn('overflow-auto rounded-md border border-border', className)}>
       <table className="w-full">
         <TableHeader className={cn(stickyHeader && 'sticky top-0 z-10')}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow
               key={headerGroup.id}
-              className="border-b border-zinc-200 bg-zinc-50 hover:bg-zinc-50"
+              className="border-b border-border bg-ds-background-200 hover:bg-ds-gray-alpha-100"
             >
               {headerGroup.headers.map((header, i) => {
                 const col = visibleColumns[i];
@@ -102,8 +102,8 @@ export function ShadcnDataTable<T extends { id: string }>({
                     key={header.id}
                     style={colStyle(col)}
                     className={cn(
-                      'h-auto px-3.5 py-[9px] text-left text-[11px] font-semibold uppercase tracking-[0.04em] text-zinc-500 bg-zinc-50',
-                      stickyFirstColumn && i === 0 && 'sticky left-0 z-[1] shadow-[1px_0_0_#e4e4e7]',
+                      'h-auto px-3.5 py-[9px] text-left text-[11px] font-semibold uppercase tracking-[0.04em] text-muted-foreground bg-ds-background-200',
+                      stickyFirstColumn && i === 0 && 'sticky left-0 z-[1] shadow-[1px_0_0_var(--ds-gray-alpha-400)]',
                       col?.className,
                     )}
                   >
@@ -118,7 +118,7 @@ export function ShadcnDataTable<T extends { id: string }>({
         <TableBody>
           {loading ? (
             Array.from({ length: skeletonRows }).map((_, i) => (
-              <TableRow key={i} className={i % 2 === 1 ? 'bg-zinc-50' : 'bg-white'}>
+              <TableRow key={i} className={i % 2 === 1 ? 'bg-ds-background-200' : 'bg-background'}>
                 {visibleColumns.map((col, ci) => (
                   <TableCell key={col.key} style={colStyle(col)} className="px-3.5 py-[13px]">
                     <Skeleton
@@ -144,12 +144,12 @@ export function ShadcnDataTable<T extends { id: string }>({
                   onClick={() => onRowClick?.(row.original)}
                   data-selected={isSelected || undefined}
                   className={cn(
-                    'group border-b border-zinc-100 last:border-0 text-[13px] transition-colors',
-                    i % 2 === 1 ? 'bg-zinc-50' : 'bg-white',
-                    onRowClick && 'cursor-pointer hover:bg-zinc-100',
-                    isSelected && 'bg-zinc-100',
+                    'group border-b border-ds-gray-alpha-200 last:border-0 text-[13px] transition-colors',
+                    i % 2 === 1 ? 'bg-ds-background-200' : 'bg-background',
+                    onRowClick && 'cursor-pointer hover:bg-ds-gray-alpha-200',
+                    isSelected && 'bg-ds-gray-100',
                   )}
-                  style={isSelected ? { boxShadow: 'inset 2px 0 0 #18181b' } : undefined}
+                  style={isSelected ? { boxShadow: 'inset 2px 0 0 var(--ds-gray-1000)' } : undefined}
                 >
                   {row.getVisibleCells().map((cell, ci) => {
                     const col = visibleColumns[ci];
@@ -160,10 +160,10 @@ export function ShadcnDataTable<T extends { id: string }>({
                         className={cn(
                           'px-3.5 py-[11px]',
                           stickyFirstColumn && ci === 0 && cn(
-                            'sticky left-0 shadow-[1px_0_0_#e4e4e7]',
-                            i % 2 === 1 ? 'bg-zinc-50' : 'bg-white',
-                            onRowClick ? 'group-hover:bg-zinc-100' : 'group-hover:bg-muted/50',
-                            isSelected && 'bg-zinc-100',
+                            'sticky left-0 shadow-[1px_0_0_var(--ds-gray-alpha-400)]',
+                            i % 2 === 1 ? 'bg-ds-background-200' : 'bg-background',
+                            onRowClick ? 'group-hover:bg-ds-gray-alpha-200' : 'group-hover:bg-muted/50',
+                            isSelected && 'bg-ds-gray-100',
                           ),
                           col?.className,
                         )}

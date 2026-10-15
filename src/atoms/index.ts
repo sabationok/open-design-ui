@@ -24,3 +24,4 @@ export { Kbd } from './Kbd';
 export { TimelineDot, type TimelineDotProps } from './TimelineDot';
 export { AnchorDot, type AnchorDotProps, type AnchorDotState } from './AnchorDot';
 export { IndicatorBox, type IndicatorBoxProps, type IndicatorBoxTone } from './IndicatorBox';
+export { Sparkline, type SparklineProps, type SparklineTone } from './Sparkline';

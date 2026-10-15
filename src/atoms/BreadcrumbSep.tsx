@@ -1,3 +1,3 @@
 export function BreadcrumbSep() {
-  return <span className="text-zinc-300">/</span>;
+  return <span className="text-ds-gray-600">/</span>;
 }
