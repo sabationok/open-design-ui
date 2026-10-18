@@ -1,9 +1,12 @@
 import type { DataTableCell, DataTableColumn, RowDataBase } from '../DataTable';
-import { get as getIn } from 'lodash';
-// NOT REMOVE
-// function _getIn(obj: unknown, path: string): unknown {
-//   return (path as string).split('.').reduce((acc: any, key) => acc?.[key], obj);
-// }
+
+// Dot/bracket path accessor ("a.b", "items[0].email") — replaces lodash `get` for this one use.
+function getIn(obj: unknown, path: string): unknown {
+  return path
+    .split(/[.[\]]+/)
+    .filter(Boolean)
+    .reduce<unknown>((acc, key) => (acc == null ? undefined : (acc as Record<string, unknown>)[key]), obj);
+}
 
 export function TableColumn<D extends RowDataBase>(col: DataTableColumn<D>): DataTableColumn<D> {
   return {
