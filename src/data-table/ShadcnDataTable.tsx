@@ -160,9 +160,10 @@ export function ShadcnDataTable<T extends { id: string }>({
                         className={cn(
                           'px-3.5 py-[11px]',
                           stickyFirstColumn && ci === 0 && cn(
-                            'sticky left-0 shadow-[1px_0_0_var(--ds-gray-alpha-400)]',
+                            'sticky left-0 z-[1] shadow-[1px_0_0_var(--ds-gray-alpha-400)]',
                             i % 2 === 1 ? 'bg-ds-background-200' : 'bg-background',
-                            onRowClick ? 'group-hover:bg-ds-gray-alpha-200' : 'group-hover:bg-muted/50',
+                            // Sticky cells sit over scrolled content — hover bg must be opaque, not an alpha tint.
+                            'group-hover:bg-ds-gray-100',
                             isSelected && 'bg-ds-gray-100',
                           ),
                           col?.className,
