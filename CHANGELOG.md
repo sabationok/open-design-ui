@@ -1,5 +1,11 @@
 # @open_design/ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 8d5691d: Drop the `lodash` runtime dependency: `TableColumn`'s `ancestor` path lookup now uses a local dot/bracket `getIn` (same semantics for `a.b` / `items[0].email`). Removes ~530 KB of non-tree-shakeable CommonJS from consumers' data-table chunk.
+
 ## 0.2.0
 
 ### Minor Changes
