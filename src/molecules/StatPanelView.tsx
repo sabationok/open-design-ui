@@ -26,6 +26,16 @@ const CHART_ACCENT: Record<ChartType, { stroke: string; fill: string }> = {
   area: { stroke: 'var(--ds-blue-700)', fill: 'var(--ds-blue-100)' },
 };
 
+const TOOLTIP_STYLE = {
+  fontSize: 12,
+  border: '1px solid var(--ds-gray-alpha-400)',
+  borderRadius: 6,
+  boxShadow: 'var(--ds-shadow-small)',
+  background: 'var(--ds-background-100)',
+  color: 'var(--ds-gray-1000)',
+  padding: '4px 10px',
+};
+
 function ScopePill({ children }: { children: React.ReactNode }) {
   return (
     <span className="rounded-full border border-border bg-background px-2 py-0.5 text-[11px] text-muted-foreground">
@@ -34,21 +44,51 @@ function ScopePill({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ChartTypeToggle({ value, onChange }: { value: ChartType; onChange?: (t: ChartType) => void }) {
-  const types: ChartType[] = ['bar', 'line', 'area'];
+const CHART_TYPES: ChartType[] = ['bar', 'line', 'area'];
+
+const CHART_TYPE_LABELS: Record<ChartType, string> = { bar: 'Bar', line: 'Line', area: 'Area' };
+
+export interface ChartTypeToggleProps {
+  value: ChartType;
+  onChange?: (t: ChartType) => void;
+  /** Subset / order of types to offer. Default: bar, line, area. */
+  types?: ChartType[];
+  /** Button captions. Default: Bar / Line / Area. */
+  labels?: Partial<Record<ChartType, string>>;
+  /** Accessible group name. Default: "Chart type". */
+  ariaLabel?: string;
+  className?: string;
+}
+
+/** Compact segmented bar/line/area switch. */
+export function ChartTypeToggle({
+  value,
+  onChange,
+  types = CHART_TYPES,
+  labels,
+  ariaLabel = 'Chart type',
+  className,
+}: ChartTypeToggleProps) {
   return (
-    <div className="flex overflow-hidden rounded border border-border bg-background">
+    <div
+      role="group"
+      aria-label={ariaLabel}
+      className={cn('flex h-7 overflow-hidden rounded-md border border-border bg-background', className)}
+    >
       {types.map((t) => (
         <button
           key={t}
           type="button"
+          aria-pressed={value === t}
           onClick={() => onChange?.(t)}
           className={cn(
-            'px-2.5 py-0.5 text-[12px] capitalize transition-colors',
-            value === t ? 'bg-primary text-primary-foreground' : 'bg-background text-ds-gray-700 hover:text-muted-foreground',
+            'px-2.5 text-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
+            value === t
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-background text-muted-foreground hover:bg-ds-gray-alpha-100 hover:text-foreground',
           )}
         >
-          {t.charAt(0).toUpperCase() + t.slice(1)}
+          {labels?.[t] ?? CHART_TYPE_LABELS[t]}
         </button>
       ))}
     </div>
@@ -73,7 +113,7 @@ export function PanelChart({ data, chartType }: { data: ChartPoint[]; chartType:
   const tooltip = (
     <Tooltip
       cursor={{ fill: 'var(--ds-gray-alpha-100)' }}
-      contentStyle={{ fontSize: 12, border: '1px solid var(--ds-gray-alpha-400)', borderRadius: 6, boxShadow: 'var(--ds-shadow-small)', background: 'var(--ds-background-100)', color: 'var(--ds-gray-1000)', padding: '4px 10px' }}
+      contentStyle={TOOLTIP_STYLE}
     />
   );
 
@@ -103,6 +143,109 @@ export function PanelChart({ data, chartType }: { data: ChartPoint[]; chartType:
         {xAxis}{yAxis}{tooltip}
         <Line dataKey="value" stroke={stroke} strokeWidth={2} dot={false} />
       </LineChart>
+    </ResponsiveContainer>
+  );
+}
+
+// ─── Multi-series timeline chart ─────────────────────────────────────────────
+
+/** Series palette: Geist chart tokens, then extra accents. Same order everywhere so a key keeps its colour. */
+export const CHART_SERIES_COLORS: readonly string[] = [
+  'var(--chart-1)',
+  'var(--chart-2)',
+  'var(--chart-3)',
+  'var(--chart-4)',
+  'var(--chart-5)',
+  'var(--ds-red-700)',
+  'var(--ds-gray-700)',
+];
+
+/** Colour for the series at `index`, cycling through `palette`. */
+export const chartSeriesColor = (index: number, palette: readonly string[] = CHART_SERIES_COLORS) =>
+  palette[index % palette.length];
+
+/** One x-axis row: `label` + one numeric column per series key. */
+export type TimelineChartRow = { label: string } & Record<string, number | string>;
+
+export interface TimelineChartProps {
+  rows: TimelineChartRow[];
+  /** All series keys, in colour order. */
+  keys: string[];
+  /** Keys currently hidden (e.g. by a legend); they keep their colour slot. */
+  hidden?: ReadonlySet<string>;
+  /** Display names for series keys (tooltip); defaults to the key. */
+  labels?: Record<string, string>;
+  chartType: ChartType;
+  /** Default 180. */
+  height?: number;
+  /** Override the series palette (CSS colour values, ideally token vars). */
+  colors?: readonly string[];
+  /** Row count above which bars drop gaps and rounding. Default 60. */
+  denseThreshold?: number;
+}
+
+/** Multi-series sibling of `PanelChart`: stacked bars, or overlaid lines / areas. */
+export function TimelineChart({
+  rows,
+  keys,
+  hidden,
+  labels,
+  chartType,
+  height = 180,
+  colors = CHART_SERIES_COLORS,
+  denseThreshold = 60,
+}: TimelineChartProps) {
+  const dense = rows.length > denseThreshold;
+  const visible = keys
+    .map((key, i) => ({ key, name: labels?.[key] ?? key, color: chartSeriesColor(i, colors) }))
+    .filter(({ key }) => !hidden?.has(key));
+
+  const axes = [
+    <XAxis
+      key="x"
+      dataKey="label"
+      axisLine={false}
+      tickLine={false}
+      tick={{ fontSize: 11, fill: 'var(--ds-gray-700)' }}
+      minTickGap={16}
+      dy={4}
+    />,
+    <YAxis key="y" hide />,
+    <Tooltip key="t" cursor={{ fill: 'var(--ds-gray-alpha-100)' }} contentStyle={TOOLTIP_STYLE} />,
+  ];
+
+  return (
+    <ResponsiveContainer width="100%" height={height}>
+      {chartType === 'bar' ? (
+        // Dense series: drop gaps + rounding so 1px bars stay solid.
+        <BarChart data={rows} barCategoryGap={dense ? 0 : '20%'}>
+          {axes}
+          {visible.map(({ key, name, color }, i) => (
+            <Bar
+              key={key}
+              dataKey={key}
+              name={name}
+              stackId="series"
+              fill={color}
+              radius={!dense && i === visible.length - 1 ? [3, 3, 0, 0] : 0}
+            />
+          ))}
+        </BarChart>
+      ) : chartType === 'area' ? (
+        <AreaChart data={rows}>
+          {axes}
+          {visible.map(({ key, name, color }) => (
+            <Area key={key} dataKey={key} name={name} stroke={color} fill={color} fillOpacity={0.12} strokeWidth={2} dot={false} />
+          ))}
+        </AreaChart>
+      ) : (
+        <LineChart data={rows}>
+          {axes}
+          {visible.map(({ key, name, color }) => (
+            <Line key={key} dataKey={key} name={name} stroke={color} strokeWidth={2} dot={false} />
+          ))}
+        </LineChart>
+      )}
     </ResponsiveContainer>
   );
 }

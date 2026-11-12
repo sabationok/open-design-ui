@@ -57,3 +57,32 @@ export const ErrorWithCode: Story = {
     </Container>
   ),
 };
+
+export const LoadingInline: Story = {
+  name: 'Loading (inline)',
+  render: () => (
+    <Container>
+      <div className="w-full">
+        <LoadingMessage variant="inline" label="Loading transactions…" />
+      </div>
+    </Container>
+  ),
+};
+
+export const ErrorWithRetry: Story = {
+  name: 'Error (card + detail + retry)',
+  render: () => (
+    <Container>
+      <ErrorMessage code={503} title="Failed to load events" error="The upstream service is unavailable." onRetry={() => {}} />
+    </Container>
+  ),
+};
+
+export const ErrorInline: Story = {
+  name: 'Error (inline + retry)',
+  render: () => (
+    <div className="max-w-md">
+      <ErrorMessage variant="inline" title="Failed to load" error="Network request timed out." onRetry={() => {}} />
+    </div>
+  ),
+};

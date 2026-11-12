@@ -59,12 +59,76 @@
   --ds-pink-700: #e93d82;
 
   /* Geist materials */
-  --ds-shadow-border: 0 0 0 1px var(--ds-gray-alpha-400);
   --ds-shadow-small: 0 2px 2px rgb(0 0 0 / 0.04);
   --ds-shadow-medium: 0 2px 2px rgb(0 0 0 / 0.04), 0 8px 8px -8px rgb(0 0 0 / 0.04);
   --ds-shadow-large: 0 2px 2px rgb(0 0 0 / 0.04), 0 8px 16px -4px rgb(0 0 0 / 0.04);
   --ds-input-focus: 0 0 0 1px var(--ds-gray-alpha-600), 0 0 0 4px rgb(0 0 0 / 0.16);
   --ds-overlay: rgb(0 0 0 / 0.4);
+}
+
+.dark {
+  --ds-background-100: #0a0a0a;
+  --ds-background-200: #000000;
+
+  --ds-gray-100: #1a1a1a;
+  --ds-gray-200: #1f1f1f;
+  --ds-gray-300: #292929;
+  --ds-gray-400: #2e2e2e;
+  --ds-gray-500: #454545;
+  --ds-gray-600: #878787;
+  --ds-gray-700: #8f8f8f;
+  --ds-gray-800: #7d7d7d;
+  --ds-gray-900: #a1a1a1;
+  --ds-gray-1000: #ededed;
+
+  --ds-gray-alpha-100: rgb(255 255 255 / 0.06);
+  --ds-gray-alpha-200: rgb(255 255 255 / 0.09);
+  --ds-gray-alpha-300: rgb(255 255 255 / 0.13);
+  --ds-gray-alpha-400: rgb(255 255 255 / 0.14);
+  --ds-gray-alpha-500: rgb(255 255 255 / 0.24);
+  --ds-gray-alpha-600: rgb(255 255 255 / 0.51);
+
+  --ds-blue-100: #0f1b2d;
+  --ds-blue-200: #10233d;
+  --ds-blue-400: #0d3868;
+  --ds-blue-700: #0070f3;
+  --ds-blue-900: #52a8ff;
+
+  --ds-red-100: #2a1314;
+  --ds-red-200: #3c1618;
+  --ds-red-400: #5c1d20;
+  --ds-red-700: #e5484d;
+  --ds-red-900: #ff6166;
+
+  --ds-amber-100: #291800;
+  --ds-amber-200: #331b00;
+  --ds-amber-400: #573300;
+  --ds-amber-700: #ffb224;
+  --ds-amber-900: #ff990a;
+
+  --ds-green-100: #0b2211;
+  --ds-green-200: #0f2e18;
+  --ds-green-400: #1a4a24;
+  --ds-green-700: #46a758;
+  --ds-green-900: #62c073;
+
+  --ds-purple-700: #8e4ec6;
+  --ds-pink-700: #e93d82;
+
+  --ds-shadow-small: 0 2px 2px rgb(0 0 0 / 0.32);
+  --ds-shadow-medium: 0 2px 2px rgb(0 0 0 / 0.32), 0 8px 8px -8px rgb(0 0 0 / 0.16);
+  --ds-shadow-large: 0 2px 2px rgb(0 0 0 / 0.32), 0 8px 16px -4px rgb(0 0 0 / 0.24);
+  --ds-input-focus: 0 0 0 1px var(--ds-gray-alpha-600), 0 0 0 4px rgb(255 255 255 / 0.24);
+  --ds-overlay: rgb(0 0 0 / 0.6);
+
+}
+
+/* Derived tokens. Declared on `:root, .dark` (not only :root): a custom property's var() is resolved where
+   it is declared, so with a .dark wrapper below <html> these must be re-declared inside it to pick up
+   the dark primitives. Keep every token that references another token in this block. */
+:root,
+.dark {
+  --ds-shadow-border: 0 0 0 1px var(--ds-gray-alpha-400);
 
   /* ── Semantic (shadcn) ────────────────────────────────────────── */
   --radius: 0.5rem; /* md = 6px (controls), lg = 8px, xl = 12px (cards, panels) */
@@ -128,64 +192,6 @@
   --vui-accent-bg: var(--ds-blue-100);
   --vui-accent-text: var(--ds-blue-900);
   --vui-accent-border: var(--ds-blue-400);
-}
-
-.dark {
-  --ds-background-100: #0a0a0a;
-  --ds-background-200: #000000;
-
-  --ds-gray-100: #1a1a1a;
-  --ds-gray-200: #1f1f1f;
-  --ds-gray-300: #292929;
-  --ds-gray-400: #2e2e2e;
-  --ds-gray-500: #454545;
-  --ds-gray-600: #878787;
-  --ds-gray-700: #8f8f8f;
-  --ds-gray-800: #7d7d7d;
-  --ds-gray-900: #a1a1a1;
-  --ds-gray-1000: #ededed;
-
-  --ds-gray-alpha-100: rgb(255 255 255 / 0.06);
-  --ds-gray-alpha-200: rgb(255 255 255 / 0.09);
-  --ds-gray-alpha-300: rgb(255 255 255 / 0.13);
-  --ds-gray-alpha-400: rgb(255 255 255 / 0.14);
-  --ds-gray-alpha-500: rgb(255 255 255 / 0.24);
-  --ds-gray-alpha-600: rgb(255 255 255 / 0.51);
-
-  --ds-blue-100: #0f1b2d;
-  --ds-blue-200: #10233d;
-  --ds-blue-400: #0d3868;
-  --ds-blue-700: #0070f3;
-  --ds-blue-900: #52a8ff;
-
-  --ds-red-100: #2a1314;
-  --ds-red-200: #3c1618;
-  --ds-red-400: #5c1d20;
-  --ds-red-700: #e5484d;
-  --ds-red-900: #ff6166;
-
-  --ds-amber-100: #291800;
-  --ds-amber-200: #331b00;
-  --ds-amber-400: #573300;
-  --ds-amber-700: #ffb224;
-  --ds-amber-900: #ff990a;
-
-  --ds-green-100: #0b2211;
-  --ds-green-200: #0f2e18;
-  --ds-green-400: #1a4a24;
-  --ds-green-700: #46a758;
-  --ds-green-900: #62c073;
-
-  --ds-purple-700: #8e4ec6;
-  --ds-pink-700: #e93d82;
-
-  --ds-shadow-small: 0 2px 2px rgb(0 0 0 / 0.32);
-  --ds-shadow-medium: 0 2px 2px rgb(0 0 0 / 0.32), 0 8px 8px -8px rgb(0 0 0 / 0.16);
-  --ds-shadow-large: 0 2px 2px rgb(0 0 0 / 0.32), 0 8px 16px -4px rgb(0 0 0 / 0.24);
-  --ds-input-focus: 0 0 0 1px var(--ds-gray-alpha-600), 0 0 0 4px rgb(255 255 255 / 0.24);
-  --ds-overlay: rgb(0 0 0 / 0.6);
-
-  /* Semantic tokens are var() references — they follow the primitives automatically. */
 }
 
 @theme inline {

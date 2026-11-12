@@ -6,10 +6,17 @@ Shared React UI component library — atoms, molecules, and a DataTable system, 
 
 ## Setup
 
+Install the peer dependencies (only the ones for components you use are needed at runtime):
+
+```bash
+pnpm add @open_design/ui @radix-ui/react-alert-dialog @radix-ui/react-collapsible @radix-ui/react-context-menu @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-separator @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tabs @tanstack/react-table class-variance-authority clsx lucide-react react react-dom react-router-dom recharts tailwind-merge tw-animate-css
+```
+
 Tailwind v4 app. In the CSS entry:
 
 ```css
 @import 'tailwindcss';
+@import 'tw-animate-css'; /* enter/exit animations of Dialog, Sheet, TreePicker */
 @import '@open_design/ui/styles/theme.css'; /* Geist tokens + @theme mappings */
 @import '@fontsource-variable/geist';
 @import '@fontsource-variable/geist-mono';
