@@ -1,4 +1,5 @@
 export { cn } from './lib/utils';
+export { CONTROL_HEIGHT, CONTROL_SQUARE, type ComponentSize } from './lib/componentSize';
 export * from './components/ui/alert-dialog';
 export * from './components/ui/button';
 export * from './components/ui/card';

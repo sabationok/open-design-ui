@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     title: 'Delivery Timeline',
-    children: <div className="px-4 py-3 text-[13px] text-zinc-500">Content goes here…</div>,
+    children: <div className="px-4 py-3 text-[13px] text-muted-foreground">Content goes here…</div>,
   },
 } satisfies Meta<typeof SectionCard>;
 

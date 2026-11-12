@@ -1,11 +1,7 @@
-export function BackButton({ onClick, children }: { onClick(): void; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
-    >
-      {children}
-    </button>
-  );
+import type { ReactNode } from 'react';
+import { BackLink } from './BackLink';
+
+/** @deprecated Use `BackLink` (same look; `label` adds the arrow icon). */
+export function BackButton({ onClick, children }: { onClick(): void; children: ReactNode }) {
+  return <BackLink onClick={onClick}>{children}</BackLink>;
 }
