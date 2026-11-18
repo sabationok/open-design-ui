@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const Flat: Story = {
   name: 'PageHeader (flat)',
   render: () => (
-    <PageHeader className="w-full border border-zinc-200">
+    <PageHeader className="w-full border border-border">
       <PageTitle>Webhooks</PageTitle>
     </PageHeader>
   ),
@@ -23,7 +23,7 @@ export const Flat: Story = {
 export const WithBreadcrumbNav: Story = {
   name: 'PageHeader with BreadcrumbNav',
   render: () => (
-    <PageHeader className="w-full border border-zinc-200">
+    <PageHeader className="w-full border border-border">
       <BreadcrumbNav
         backLabel="Events"
         onBack={() => {}}

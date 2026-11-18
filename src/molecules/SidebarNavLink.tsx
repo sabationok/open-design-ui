@@ -1,20 +1,32 @@
+import type { ElementType, ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
 export type SidebarNavLinkProps = {
   to: string;
   end?: boolean;
-  icon: React.ElementType;
+  /** Optional leading icon (any component taking `className`). */
+  icon?: ElementType;
   disabled?: boolean;
-  children: React.ReactNode;
+  /** Label; may include trailing extras (badge, count) — they lay out in a flex row. */
+  children: ReactNode;
+  className?: string;
 };
 
-export function SidebarNavLink({ to, end, icon: Icon, disabled, children }: SidebarNavLinkProps) {
+const BASE = 'flex min-h-8 items-center gap-2.5 rounded-md px-2.5 py-[7px] text-sm';
+
+// Sidebar link: gray pill when active, no accent colour (Geist navigation).
+export function SidebarNavLink({ to, end, icon: Icon, disabled, children, className }: SidebarNavLinkProps) {
+  const content = (
+    <>
+      {Icon && <Icon className="h-4 w-4 shrink-0" aria-hidden />}
+      <span className="flex min-w-0 flex-1 items-center gap-2">{children}</span>
+    </>
+  );
   if (disabled) {
     return (
-      <span className="flex cursor-not-allowed select-none items-center gap-2.5 rounded-md px-2.5 py-[7px] text-sm text-ds-gray-700">
-        <Icon className="h-4 w-4 shrink-0" />
-        {children}
+      <span aria-disabled="true" className={cn(BASE, 'cursor-not-allowed select-none text-ds-gray-700', className)}>
+        {content}
       </span>
     );
   }
@@ -24,15 +36,20 @@ export function SidebarNavLink({ to, end, icon: Icon, disabled, children }: Side
       end={end}
       className={({ isActive }) =>
         cn(
-          'flex items-center gap-2.5 rounded-md px-2.5 py-[7px] text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+          BASE,
+          'transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
           isActive
             ? 'bg-ds-gray-100 font-medium text-foreground'
             : 'text-muted-foreground hover:bg-ds-gray-alpha-100 hover:text-foreground',
+          className,
         )
       }
     >
-      <Icon className="h-4 w-4 shrink-0" />
-      {children}
+      {content}
     </NavLink>
   );
 }
+
+/** App-facing alias (fintrack `NavItem`): identical component and props. */
+export const NavItem = SidebarNavLink;
+export type NavItemProps = SidebarNavLinkProps;

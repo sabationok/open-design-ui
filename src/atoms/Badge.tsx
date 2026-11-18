@@ -4,7 +4,17 @@ import { cn } from '../lib/utils';
 import { Dot } from './Dot';
 
 export type BadgeVariant = 'tone' | 'status' | 'swatch';
-export type BadgeTone = 'default' | 'secondary' | 'destructive' | 'outline' | 'success' | 'warning';
+export type BadgeTone =
+  | 'default'
+  | 'secondary'
+  | 'destructive'
+  | 'outline'
+  | 'success'
+  | 'warning'
+  // One tone = one meaning: neutral covers most metadata, accent marks the selected/highlighted kind.
+  | 'neutral'
+  | 'accent'
+  | 'danger';
 export type BadgeSize = 'sm' | 'md';
 export type BadgeAppearance = 'filled' | 'bordered';
 
@@ -35,6 +45,10 @@ export interface BadgeProps {
   // variant="tone"
   tone?: BadgeTone;
   children?: React.ReactNode;
+  /** Leading icon (e.g. a lucide icon component), sized to the text. */
+  icon?: React.ComponentType<{ className?: string }>;
+  /** Native tooltip, e.g. the full text when the label truncates. */
+  title?: string;
 
   // variant="status" | "swatch" — value lookup
   value?: string;
@@ -44,7 +58,7 @@ export interface BadgeProps {
   // value.toLowerCase() ("swatch" variant), matching each variant's prior behavior
   getKey?: (value: string) => string;
 
-  // variant="status"
+  // variant="status"; also variant="tone" — "bordered" gives the compact chip look (tinted border, truncates).
   withDot?: boolean;
   appearance?: BadgeAppearance;
   mono?: boolean;
@@ -63,6 +77,9 @@ const toneVariants = cva('inline-flex items-center whitespace-nowrap font-semibo
       outline: '',
       success: '',
       warning: '',
+      neutral: '',
+      accent: '',
+      danger: '',
     },
   },
   compoundVariants: [
@@ -72,12 +89,18 @@ const toneVariants = cva('inline-flex items-center whitespace-nowrap font-semibo
     { size: 'md', tone: 'outline', class: 'border-border text-foreground' },
     { size: 'md', tone: 'success', class: 'border-transparent bg-vui-success-bg text-vui-success-text' },
     { size: 'md', tone: 'warning', class: 'border-transparent bg-vui-warning-bg text-vui-warning-text' },
+    { size: 'md', tone: 'neutral', class: 'border-ds-gray-alpha-500 text-muted-foreground' },
+    { size: 'md', tone: 'accent', class: 'border-transparent bg-vui-accent-bg text-vui-accent-text' },
+    { size: 'md', tone: 'danger', class: 'border-transparent bg-vui-danger-bg text-vui-danger-text' },
     { size: 'sm', tone: 'default', class: 'bg-ds-gray-100 text-muted-foreground' },
     { size: 'sm', tone: 'secondary', class: 'bg-ds-gray-100 text-muted-foreground' },
     { size: 'sm', tone: 'outline', class: 'bg-ds-gray-100 text-muted-foreground' },
     { size: 'sm', tone: 'destructive', class: 'bg-vui-danger-bg text-vui-danger-text' },
     { size: 'sm', tone: 'success', class: 'bg-vui-success-bg text-vui-success-text' },
     { size: 'sm', tone: 'warning', class: 'bg-vui-warning-bg text-vui-warning-text' },
+    { size: 'sm', tone: 'neutral', class: 'bg-ds-gray-100 text-muted-foreground' },
+    { size: 'sm', tone: 'accent', class: 'bg-vui-accent-bg text-vui-accent-text' },
+    { size: 'sm', tone: 'danger', class: 'bg-vui-danger-bg text-vui-danger-text' },
   ],
   defaultVariants: { size: 'md', tone: 'default' },
 });
@@ -92,6 +115,15 @@ const TONE_PALETTE: Record<BadgeTone, Required<BadgeColors>> = {
   destructive: { main: 'bg-vui-danger-bg text-vui-danger-text', border: 'border-vui-danger-border', dot: 'bg-vui-danger' },
   success: { main: 'bg-vui-success-bg text-vui-success-text', border: 'border-vui-success-border', dot: 'bg-vui-success' },
   warning: { main: 'bg-vui-warning-bg text-vui-warning-text', border: 'border-vui-warning-border', dot: 'bg-vui-warning' },
+  neutral: { main: 'bg-transparent text-muted-foreground', border: 'border-ds-gray-alpha-500', dot: 'bg-vui-neutral' },
+  accent: { main: 'bg-vui-accent-bg text-vui-accent-text', border: 'border-vui-accent-border', dot: 'bg-vui-accent' },
+  danger: { main: 'bg-vui-danger-bg text-vui-danger-text', border: 'border-vui-danger-border', dot: 'bg-vui-danger' },
+};
+
+// variant="tone" + appearance="bordered": compact chip — one line, tinted border, label truncates.
+const BORDERED_SIZE: Record<BadgeSize, string> = {
+  sm: 'h-5 gap-1 rounded-sm px-1.5 text-[11px] [&_svg]:size-3',
+  md: 'h-6 gap-1.5 rounded-md px-2 text-xs [&_svg]:size-3.5',
 };
 
 const DEFAULT_STATUS_COLORS: Required<BadgeColors> = { main: 'bg-ds-gray-100 text-muted-foreground', border: 'border-border', dot: 'bg-ds-gray-600' };
@@ -112,6 +144,8 @@ export function Badge({
   className,
   tone = 'default',
   children,
+  icon: Icon,
+  title,
   value = '',
   config = {},
   fallback,
@@ -159,5 +193,29 @@ export function Badge({
     );
   }
 
-  return <div className={cn(toneVariants({ tone, size }), className)}>{children}</div>;
+  if (appearance === 'bordered') {
+    const colors = TONE_PALETTE[tone];
+    return (
+      <span
+        title={title}
+        className={cn(
+          'inline-flex max-w-full items-center whitespace-nowrap border font-medium leading-none',
+          BORDERED_SIZE[size],
+          colors.main,
+          colors.border,
+          className,
+        )}
+      >
+        {Icon && <Icon className="shrink-0" />}
+        <span className="truncate">{children}</span>
+      </span>
+    );
+  }
+
+  return (
+    <div title={title} className={cn(toneVariants({ tone, size }), Icon && 'gap-1', className)}>
+      {Icon && <Icon className={cn('shrink-0', size === 'sm' ? 'size-3' : 'size-3.5')} />}
+      {children}
+    </div>
+  );
 }

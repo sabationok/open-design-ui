@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Tag } from 'lucide-react';
 import { Badge, type BadgeConfig, type BadgeTone } from '../../atoms/Badge';
 
 // export from src/storybook/components
@@ -35,9 +36,10 @@ const meta = {
   argTypes: {
     tone: {
       control: 'select',
-      options: ['default', 'secondary', 'destructive', 'outline', 'success', 'warning'] satisfies BadgeTone[],
+      options: ['default', 'secondary', 'destructive', 'outline', 'success', 'warning', 'neutral', 'accent', 'danger'] satisfies BadgeTone[],
     },
     size: { control: 'radio', options: ['sm', 'md'] },
+    appearance: { control: 'radio', options: ['filled', 'bordered'] },
   },
 } satisfies Meta<typeof Badge>;
 
@@ -75,6 +77,41 @@ export const SwatchVariant: Story = {
     <Row>
       {Object.keys(SWATCH_CONFIG).map((key) => (
         <Badge key={key} variant="swatch" value={key} config={SWATCH_CONFIG} />
+      ))}
+    </Row>
+  ),
+};
+
+export const ChipTones: Story = {
+  name: 'appearance="bordered" (chip) + icon',
+  render: () => (
+    <div className="flex flex-col gap-3">
+      {(['sm', 'md'] as const).map((size) => (
+        <Row key={size}>
+          {(['neutral', 'accent', 'warning', 'success', 'danger'] as const).map((tone) => (
+            <Badge key={tone} appearance="bordered" size={size} tone={tone} icon={Tag}>
+              {tone}
+            </Badge>
+          ))}
+          <span className="w-24">
+            <Badge appearance="bordered" size={size} tone="neutral" title="A label that is far too long to fit">
+              A label that is far too long to fit
+            </Badge>
+          </span>
+        </Row>
+      ))}
+    </div>
+  ),
+};
+
+export const NewFilledTones: Story = {
+  name: 'filled: neutral / accent / danger + icon',
+  render: (args) => (
+    <Row>
+      {(['neutral', 'accent', 'danger'] as const).map((tone) => (
+        <Badge key={tone} {...args} tone={tone} icon={Tag}>
+          {tone}
+        </Badge>
       ))}
     </Row>
   ),

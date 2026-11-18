@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { StatPanelView, type ChartPoint, type ChartType } from '../../molecules/StatPanelView';
+import {
+  StatPanelView,
+  TimelineChart,
+  ChartTypeToggle as ChartTypeToggleControl,
+  chartSeriesColor,
+  type ChartPoint,
+  type ChartType,
+  type TimelineChartRow,
+} from '../../molecules/StatPanelView';
 
 interface MockPanelConfig {
   id: string;
@@ -78,4 +86,83 @@ export const Empty: Story = {
       />
     </div>
   ),
+};
+
+const SERIES_KEYS = ['delivered', 'failed', 'retried', 'filtered'];
+const SERIES_LABELS: Record<string, string> = {
+  delivered: 'Delivered',
+  failed: 'Failed',
+  retried: 'Retried',
+  filtered: 'Filtered',
+};
+
+const TIMELINE_ROWS: TimelineChartRow[] = Array.from({ length: 14 }, (_, i) => ({
+  label: `Oct ${i + 14}`,
+  delivered: 40 + ((i * 17) % 35),
+  failed: 3 + ((i * 7) % 9),
+  retried: 5 + ((i * 5) % 11),
+  filtered: 2 + ((i * 3) % 6),
+}));
+
+const DENSE_ROWS: TimelineChartRow[] = Array.from({ length: 90 }, (_, i) => ({
+  label: `D${i + 1}`,
+  delivered: 30 + Math.round(20 * Math.sin(i / 6)) + 20,
+  failed: 4 + (i % 5),
+  retried: 3 + (i % 7),
+  filtered: 1 + (i % 3),
+}));
+
+function TimelineChartDemo({ rows }: { rows: TimelineChartRow[] }) {
+  const [chartType, setChartType] = useState<ChartType>('bar');
+  const [hidden, setHidden] = useState<Set<string>>(new Set());
+  const toggle = (key: string) =>
+    setHidden((h) => {
+      const next = new Set(h);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+
+  return (
+    <div className="max-w-2xl rounded-xl border border-border bg-background p-4">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <ul className="flex flex-wrap gap-1.5" aria-label="Series">
+          {SERIES_KEYS.map((key, i) => (
+            <li key={key}>
+              <button
+                type="button"
+                aria-pressed={!hidden.has(key)}
+                onClick={() => toggle(key)}
+                className="flex h-7 items-center gap-1.5 rounded-md border border-border px-2 text-[12px] text-foreground aria-[pressed=false]:text-ds-gray-700 aria-[pressed=false]:line-through"
+              >
+                <span className="size-2 rounded-full" style={{ background: chartSeriesColor(i) }} />
+                {SERIES_LABELS[key]}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <ChartTypeToggleControl value={chartType} onChange={setChartType} />
+      </div>
+      <TimelineChart rows={rows} keys={SERIES_KEYS} hidden={hidden} labels={SERIES_LABELS} chartType={chartType} />
+    </div>
+  );
+}
+
+/** Multi-series sibling of PanelChart: stacked bars, overlaid lines / areas; hidden series keep their colour. */
+export const MultiSeriesTimeline: Story = {
+  render: () => <TimelineChartDemo rows={TIMELINE_ROWS} />,
+};
+
+/** More than 60 rows: bars drop gaps and rounding. */
+export const MultiSeriesDense: Story = {
+  render: () => <TimelineChartDemo rows={DENSE_ROWS} />,
+};
+
+/** Standalone segmented chart-type switch (role=group, aria-pressed). */
+export const ChartTypeToggleStandalone: Story = {
+  name: 'ChartTypeToggle',
+  render: () => {
+    const [value, setValue] = useState<ChartType>('line');
+    return <ChartTypeToggleControl value={value} onChange={setValue} />;
+  },
 };
