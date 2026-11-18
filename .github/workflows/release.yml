@@ -26,7 +26,8 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: https://registry.npmjs.org
+          # No registry-url: it writes an .npmrc with _authToken=${NODE_AUTH_TOKEN} (a placeholder when no
+          # secret is set), and a token in .npmrc stops npm from exchanging the OIDC id-token → E404 on publish.
 
       - run: pnpm install --frozen-lockfile
 
