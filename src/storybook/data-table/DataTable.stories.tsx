@@ -126,3 +126,63 @@ export const EventsTable: Story = {
     );
   },
 };
+
+// 5000 generated ledger rows: sorting, Excel filters, resizable widths (remembered) and virtual rows.
+interface LedgerRow {
+  id: string;
+  date: string;
+  kind: string;
+  amount: number;
+  currency: string;
+  account: string;
+  note: string;
+}
+
+const KINDS = ['expense', 'income', 'transfer'];
+const CURRENCIES = ['UAH', 'PLN', 'EUR', 'USD'];
+const ACCOUNTS = ['Cash', 'Main card', 'Savings', 'Business', 'Credit card'];
+const NOTES = ['Groceries', 'Salary', 'Rent', 'Taxi', 'Coffee', 'Pharmacy', ''];
+
+const LEDGER_ROWS: LedgerRow[] = Array.from({ length: 5000 }, (_, i) => ({
+  id: `tx_${i + 1}`,
+  date: new Date(Date.UTC(2026, 0, 1) + i * 3_600_000 * 2).toISOString(),
+  kind: KINDS[(i * 7) % KINDS.length],
+  amount: Math.round(((i * 7919) % 100_000) / 10) / 10,
+  currency: CURRENCIES[(i * 3) % CURRENCIES.length],
+  account: ACCOUNTS[(i * 3) % ACCOUNTS.length],
+  note: NOTES[(i * 11) % NOTES.length],
+}));
+
+const LEDGER_COLUMNS: DataTableColumn<LedgerRow>[] = [
+  { key: 'id', header: 'ID', size: 90, ancestor: 'id', filter: false, render: ({ value }) => value as string },
+  DateColumn<LedgerRow>({ key: 'date', header: 'Date', size: 170, ancestor: 'date', filter: 'range' }),
+  { key: 'kind', header: 'Kind', size: 110, ancestor: 'kind', render: ({ value }) => value as string },
+  {
+    key: 'amount',
+    header: 'Amount',
+    size: 110,
+    align: 'right',
+    filter: 'range',
+    ancestor: 'amount',
+    render: ({ value }) => (value as number).toFixed(2),
+  },
+  { key: 'currency', header: 'Cur', size: 80, ancestor: 'currency', render: ({ value }) => value as string },
+  { key: 'account', header: 'Account', size: 150, ancestor: 'account', filter: 'text', render: ({ value }) => value as string },
+  { key: 'note', header: 'Note', size: 200, ancestor: 'note', filter: 'text', render: ({ value }) => value as string },
+];
+
+export const ExcelFeatures: Story = {
+  name: 'sortable · filterable · resizable · virtual (5000 rows)',
+  render: () => (
+    <ShadcnDataTable
+      columns={LEDGER_COLUMNS}
+      rows={LEDGER_ROWS}
+      sortable
+      filterable
+      storageKey="storybook:ledger"
+      virtual
+      height={480}
+      rowClassName={(r) => (r.kind === 'transfer' ? 'text-ds-blue-900' : undefined)}
+    />
+  ),
+};

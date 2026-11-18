@@ -50,7 +50,7 @@ export interface BadgeProps {
   mono?: boolean;
 }
 
-const toneVariants = cva('inline-flex items-center font-semibold transition-colors', {
+const toneVariants = cva('inline-flex items-center whitespace-nowrap font-semibold transition-colors', {
   variants: {
     size: {
       md: 'rounded-full border px-2.5 py-0.5 text-xs',
@@ -128,7 +128,7 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-[7px] rounded-[4px] border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground',
+          'inline-flex items-center whitespace-nowrap gap-[7px] rounded-[4px] border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground',
           className,
         )}
       >
@@ -145,7 +145,7 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center rounded-[4px] font-medium',
+          'inline-flex items-center whitespace-nowrap rounded-[4px] font-medium',
           size === 'sm' ? 'gap-1 px-2 py-0.5 text-[11px]' : 'gap-1.5 px-2.5 py-0.5 text-xs',
           mono && 'font-mono text-[11px]',
           colors.main,

@@ -28,7 +28,21 @@ export interface DataTableColumn<T extends RowDataBase = RowDataBase> extends Sh
   render: (cell: DataTableCell<T>) => ReactNode;
   getValue?: (cell: DataTableCell<T>) => unknown;
   ancestor?: keyof T;
+  /**
+   * ShadcnDataTable: Excel-style filter from the header funnel, on the `getValue` value. `values` — distinct
+   * values with counts; `text` adds «contains»; `range` adds from/to (numbers, ISO dates). `false` turns it off
+   * when the table is `filterable`.
+   */
+  filter?: DataTableFilterKind | false;
+  /** ShadcnDataTable: sort on a header click (default: the table's `sortable`). */
+  sortable?: boolean;
+  /** ShadcnDataTable with `resizable`/`storageKey`: default width in px (falls back to a numeric `width`). */
+  size?: number;
+  /** Cell alignment; `right` also sets mono tabular digits (amounts). */
+  align?: 'left' | 'right';
 }
+
+export type DataTableFilterKind = 'values' | 'text' | 'range';
 
 export type DataTableCell<D extends RowDataBase = RowDataBase> = {
   row: RowSharedCtx<D>;
