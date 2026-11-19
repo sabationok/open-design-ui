@@ -66,25 +66,26 @@
   --ds-overlay: rgb(0 0 0 / 0.4);
 }
 
+/* Dark: a soft graphite (macOS-like), not pure black, so white text and controls do not glare. */
 .dark {
-  --ds-background-100: #0a0a0a;
-  --ds-background-200: #000000;
+  --ds-background-100: #1c1c1e;
+  --ds-background-200: #161618;
 
-  --ds-gray-100: #1a1a1a;
-  --ds-gray-200: #1f1f1f;
-  --ds-gray-300: #292929;
-  --ds-gray-400: #2e2e2e;
-  --ds-gray-500: #454545;
+  --ds-gray-100: #2a2a2d;
+  --ds-gray-200: #303034;
+  --ds-gray-300: #3a3a3e;
+  --ds-gray-400: #444448;
+  --ds-gray-500: #58585d;
   --ds-gray-600: #878787;
   --ds-gray-700: #8f8f8f;
   --ds-gray-800: #7d7d7d;
-  --ds-gray-900: #a1a1a1;
-  --ds-gray-1000: #ededed;
+  --ds-gray-900: #a8a8ad;
+  --ds-gray-1000: #e6e6e9;
 
   --ds-gray-alpha-100: rgb(255 255 255 / 0.06);
   --ds-gray-alpha-200: rgb(255 255 255 / 0.09);
   --ds-gray-alpha-300: rgb(255 255 255 / 0.13);
-  --ds-gray-alpha-400: rgb(255 255 255 / 0.14);
+  --ds-gray-alpha-400: rgb(255 255 255 / 0.12);
   --ds-gray-alpha-500: rgb(255 255 255 / 0.24);
   --ds-gray-alpha-600: rgb(255 255 255 / 0.51);
 
@@ -192,6 +193,14 @@
   --vui-accent-bg: var(--ds-blue-100);
   --vui-accent-text: var(--ds-blue-900);
   --vui-accent-border: var(--ds-blue-400);
+}
+
+/* Dark only: the primary control is off-white, not the text colour (a white button on a dark page glares). Declared
+   after the shared block so it wins. */
+.dark {
+  --primary: #d4d4d8;
+  --primary-foreground: var(--ds-background-100);
+  --sidebar-primary: #d4d4d8;
 }
 
 @theme inline {
